@@ -3,9 +3,9 @@ package taller01
 import spock.lang.Specification
 
 /**
- * Created by sofia on 11/03/17
+ * 1. Estructura de un test en Spock
  */
-class Test01Spec extends Specification { // todo: numerar tests
+class Test01Spec extends Specification {
 
     def "Test mínimo: bloque expect"() {
         // Un bloque expect sólo admite condiciones y definiciones de variables. Es a la vez estímulo y respuesta.
@@ -16,7 +16,7 @@ class Test01Spec extends Specification { // todo: numerar tests
         c == 5
     }
 
-    def "Setup explícito (también vale given)"() { // todo: Ventajas y desventajas de separar el setup
+    def "Setup explícito (también vale given)"() {
         setup:
         def a = 2
         def b = 3
@@ -34,12 +34,12 @@ class Test01Spec extends Specification { // todo: numerar tests
         def b = 3
         def c = a * b
 
-        then:
+        then: // Respuesta
         c == 12
     }
 
     def "Bloque when/then con setup explícito"() {
-        setup: // Respuesta
+        setup:
         def a = 10
         def b = 2
         def c
@@ -49,5 +49,28 @@ class Test01Spec extends Specification { // todo: numerar tests
 
         then:
         c == 8
+    }
+
+    def "Varios when/then"() {
+        setup:
+        def a = 2
+
+        when:
+        a *= 2
+
+        then:
+        a == 4
+
+        when:
+        a *= 2
+
+        then:
+        a == 8
+
+        when:
+        a *= 2
+
+        then:
+        a == 16
     }
 }
