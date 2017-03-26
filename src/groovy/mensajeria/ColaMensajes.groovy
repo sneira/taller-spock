@@ -9,8 +9,10 @@ class ColaMensajes {
     }
 
     def addMensaje(Mensaje mensaje) {
-        cola.add(mensaje)
-        cola.sort()
+        if (mensaje) {
+            cola.add(mensaje)
+            cola.sort()
+        }
     }
 
     def totalMensajes() {

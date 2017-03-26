@@ -11,6 +11,7 @@ class Mensaje implements Comparable<Mensaje> {
     Integer prioridad
     String texto
     Long timestamp
+    String nombreAdjunto
 
     public Mensaje(String remitente, String destinatario, String texto) {
         inicializar(remitente, destinatario, texto, PRIORIDAD_NORMAL)
@@ -38,6 +39,10 @@ class Mensaje implements Comparable<Mensaje> {
         this.destinatario = destinatario
         this.texto = texto
         this.prioridad = prioridad
+    }
+
+    public void adjuntarFichero(String nombreFichero) {
+        this.nombreAdjunto = GeneradorNombres.normalizarNombre(nombreFichero)
     }
 
     @Override
