@@ -17,24 +17,21 @@ import spock.lang.Specification
  */
 class Mensajes02Spec extends Specification {
 
-    def "Normalizado de nombres (forma 1)"() {
+    def "1. Normalizado de nombres (forma 1: tuberías)"() {
+        /*
         expect:
         GeneradorNombres.normalizarNombre(nombreOriginal) == nombreNormalizado
 
         where:
-        nombreOriginal << ["prueba", "fichero.pdf", "Nombre con espacios.doc", "¡Reunión urgente mañana!.txt"]
-        nombreNormalizado << ["prueba", "fichero.pdf", "Nombre con espacios.doc", "Reunion urgente manana.txt"]
+        ...
+         */
     }
 
-    def "Normalizado de nombres (forma 2)"() {
-        expect:
+    def "2. Normalizado de nombres (forma 2: tablas)"() {
+        /*expect:
         GeneradorNombres.normalizarNombre(nombreOriginal) == nombreNormalizado
 
         where:
-        nombreOriginal                 | nombreNormalizado
-        "prueba"                       | "prueba"
-        "fichero.pdf"                  | "fichero.pdf"
-        "Nombre con espacios.doc"      | "Nombre con espacios.doc"
-        "¡Reunión urgente mañana!.txt" | "Reunion urgente manana.txt"
+        ...*/
     }
 }

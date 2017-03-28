@@ -12,8 +12,7 @@ import spock.lang.Specification
 class Mensajes04Spec extends Specification {
 
     @Shared ColaMensajes colaMensajes
-    // @Shared String cuerpoMensaje
-    static String cuerpoMensaje
+    @Shared String cuerpoMensaje
 
     def setupSpec() {
         println "Inicializando cola de mensajes..."
@@ -48,5 +47,7 @@ class Mensajes04Spec extends Specification {
         "admin"   | "rrhh"       | 2
         "admin"   | "empresa"    | 3
     }
+
+    // todo: ¿otro test para comprobar que el estado de la cola se va a guardar entre métodos?
 
 }
