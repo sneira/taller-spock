@@ -5,49 +5,62 @@ import mensajeria.Mensaje
 import org.apache.commons.lang.RandomStringUtils
 import spock.lang.Shared
 import spock.lang.Specification
+import spock.lang.Stepwise
 
 /**
  * 4. Bloques setup, cleanup, setupSpec, cleanupSpec; variables compartidas
  */
+
+@Stepwise // Esta anotación hace que el test se ejecute en el orden en el que está.
 class Mensajes04Spec extends Specification {
 
-    @Shared ColaMensajes colaMensajes
-    @Shared String cuerpoMensaje
+    @Shared ColaMensajes colaMensajes = new ColaMensajes()
 
+    // Se ejecuta al principio del test.
     def setupSpec() {
-        println "Inicializando cola de mensajes..."
-        colaMensajes = new ColaMensajes()
-        assert colaMensajes.totalMensajes() == 0
+        println "Inicializando test..."
     }
 
+    // Se ejecuta al final del test.
     def cleanupSpec() {
-        println "Borrando cola ${colaMensajes}"
-        assert colaMensajes.totalMensajes() > 0
-        colaMensajes.vaciar()
-        assert colaMensajes.totalMensajes() == 0
+        println "Finalizando test..."
     }
 
+    // Se ejecuta antes de cada método o iteración.
     def setup() {
-        cuerpoMensaje = RandomStringUtils.randomAscii(10)
+        colaMensajes.addMensaje(new Mensaje("setup", "setup", "Mensaje creado en el setup"))
     }
 
+    // Se ejecuta después de cada método o iteración.
     def cleanup() {
+        println "Fin de método/iteración. Cola: ${colaMensajes}"
     }
 
     def "Añadir mensajes a una cola"() {
-        when:
-        colaMensajes.addMensaje(new Mensaje(remitente, destinatario, cuerpoMensaje))
+        /*when:
+        colaMensajes.addMensaje(new Mensaje(remitente, destinatario, texto))
 
         then:
-        colaMensajes.totalMensajes() == numeroMensajes
+        colaMensajes.totalMensajes() == totalMensajes
 
         where:
-        remitente | destinatario | numeroMensajes
-        "usu1"    | "usu2"       | 1
-        "admin"   | "rrhh"       | 2
-        "admin"   | "empresa"    | 3
+        remitente | destinatario | texto                       | totalMensajes
+        "usu1"    | "usu2"       | "Prueba"                    | ...
+        "admin"   | "rrhh"       | "Alta de usuario"           | ...
+        "admin"   | "empresa"    | "Incidencia en el servicio" | ...
+        */
     }
 
-    // todo: ¿otro test para comprobar que el estado de la cola se va a guardar entre métodos?
+    def "Añadir un mensaje más"() {
+        /*expect:
+        colaMensajes.totalMensajes() == ...
+
+        when:
+        colaMensajes.vaciar()
+
+        then:
+        colaMensajes.totalMensajes() == ...
+        */
+    }
 
 }

@@ -10,27 +10,26 @@ import spock.lang.Specification
  */
 class Mensajes03Spec extends Specification {
 
-    @Ignore
     def "Añadir mensajes a una cola"() {
-        setup:
+        /*setup:
         ColaMensajes cola = new ColaMensajes()
 
         when:
-        cola.addMensaje(new Mensaje(remitente, destinatario, texto, prioridad))
+        cola.addMensaje(new Mensaje(remitente, destinatario, texto))
 
         then:
-        cola.totalMensajes() == -1
+        cola.totalMensajes() == totalMensajes
 
         where:
-        remitente | destinatario | texto                       | prioridad
-        "usu1"    | "usu2"       | "Prueba"                    | Mensaje.PRIORIDAD_NORMAL
-        "admin"   | "rrhh"       | "Alta de usuario"           | Mensaje.PRIORIDAD_BAJA
-        "admin"   | "empresa"    | "Incidencia en el servicio" | Mensaje.PRIORIDAD_ALTA
+        remitente | destinatario | texto                       | totalMensajes
+        "usu1"    | "usu2"       | "Prueba"                    | ...
+        "admin"   | "rrhh"       | "Alta de usuario"           | ...
+        "admin"   | "empresa"    | "Incidencia en el servicio" | ...
+        */
     }
 
-    @Ignore
     def "Los mensajes nulos no se añaden"() {
-        setup:
+        /*setup:
         ColaMensajes cola = new ColaMensajes()
         Mensaje mens = new Mensaje("remitente", "destinatario", "texto")
 
@@ -43,7 +42,7 @@ class Mensajes03Spec extends Specification {
         where:
         mensaje | total
         null    | 0
-        mens    | 1
+        mens    | 1*/
     }
 
 }
