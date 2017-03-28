@@ -23,4 +23,17 @@ class ColaMensajes {
         cola.get(i)
     }
 
+    def vaciar() {
+        cola.clear()
+    }
+
+    @Override
+    String toString() {
+        String cadena = "*** Cola con ${totalMensajes()} mensajes ***"
+        for (Mensaje mens : cola) {
+            cadena += "\n - ${mens}"
+        }
+        cadena
+    }
+
 }

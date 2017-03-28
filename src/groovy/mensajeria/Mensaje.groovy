@@ -50,4 +50,9 @@ class Mensaje implements Comparable<Mensaje> {
         int comparacionPrioridades = prioridad.compareTo(o.prioridad)
         return (comparacionPrioridades != 0 ? comparacionPrioridades : timestamp.compareTo(o.timestamp))
     }
+
+    @Override
+    String toString() {
+        "De ${remitente} a ${destinatario}: '${texto}' (${timestamp})"
+    }
 }
