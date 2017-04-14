@@ -14,14 +14,10 @@ class Mensaje implements Comparable<Mensaje> {
     String nombreAdjunto
 
     public Mensaje(String remitente, String destinatario, String texto) {
-        inicializar(remitente, destinatario, texto, PRIORIDAD_NORMAL)
+        this(remitente, destinatario, texto, PRIORIDAD_NORMAL)
     }
 
     public Mensaje(String remitente, String destinatario, String texto, Integer prioridad) {
-        inicializar(remitente, destinatario, texto, prioridad)
-    }
-
-    private inicializar(String remitente, String destinatario, String texto, Integer prioridad) {
         if (!remitente) {
             throw new DatosIncompletosException("Falta el remitente")
         }
