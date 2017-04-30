@@ -5,10 +5,12 @@ import spock.lang.Specification
 
 /**
  * 2. Tests orientados a datos
- * Bloque where con datos para iterar.
+ * Bloque where con datos para iterar:
+ *  - Siempre está al final del método.
+ *  - No se puede repetir.
  * Maneras de crear conjuntos de datos:
- * - Tuberías: variable << [valor1, valor2, ..., valorN]
- * - Tablas (la opción Reformat code las formatea automáticamente):
+ *  - Tuberías: variable << [valor1, valor2, ..., valorN]
+ *  - Tablas (la opción Reformat code las formatea automáticamente):
  *      variable1 | variable2
  *      valor1    | valorX
  *      valor2    | valorY
