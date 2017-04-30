@@ -7,9 +7,17 @@ import spock.lang.Specification
 /**
  * 1. Estructura de un test en Spock
  * Tipos de bloques:
- *  - setup/given
- *  - expect
- *  - when + then (se pueden repetir)
+ *  - setup/given:
+ *      - No puede estar precedido por otros bloques.
+ *      - No se puede repetir.
+ *  - expect:
+ *      - Sólo puede contener condiciones y definiciones de variables.
+ *      - Útil cuando es más natural describir el estímulo y la respuesta en una sola expresión: Math.max(1, 2) == 2
+ *  - when + then:
+ *      - Siempre van juntos (estímulo -> respuesta)
+ *      - Un método puede contener varias parejas de when + then.
+ *      - Los bloques when pueden contener cualquier tipo de código.
+ *      - Los bloques then sólo pueden contener condiciones, condiciones de excepción, interacciones y definiciones de variables.
  */
 class Mensajes01Spec extends Specification {
 
