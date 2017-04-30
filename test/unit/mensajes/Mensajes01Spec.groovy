@@ -93,4 +93,44 @@ class Mensajes01Spec extends Specification {
         colaMensajes.getMensajeEnPosicion(2).prioridad == Mensaje.PRIORIDAD_BAJA
     }
 
+    def "6. Los mensajes se ordenan a medida que se añaden (con documentación)"() {
+        setup: "Inicializo la cola" // Estas descripciones de bloque ayudan a documentar el código
+        ColaMensajes colaMensajes = new ColaMensajes()
+
+        expect: "La cola está vacía"
+        colaMensajes.totalMensajes() == 0
+
+        when: "Añado un mensaje de prioridad baja"
+        colaMensajes.addMensaje(new Mensaje("rem", "dest", "No hay prisa", Mensaje.PRIORIDAD_BAJA))
+
+        then: "La cola tiene un mensaje"
+        colaMensajes.totalMensajes() == 1
+
+        when: "Añado un mensaje de prioridad normal"
+        colaMensajes.addMensaje(new Mensaje("rem", "dest", "Mensaje", Mensaje.PRIORIDAD_NORMAL))
+
+        // Inicio del bloque then
+        then: "La cola tiene dos mensajes"
+        colaMensajes.totalMensajes() == 2
+        and: "El primer mensaje tiene prioridad normal" // La etiqueta and nos ayuda a documentar partes de un bloque
+        colaMensajes.getMensajeEnPosicion(0).prioridad == Mensaje.PRIORIDAD_NORMAL
+        and: "El segundo mensaje tiene prioridad baja"
+        colaMensajes.getMensajeEnPosicion(1).prioridad == Mensaje.PRIORIDAD_BAJA
+        // Fin del bloque then
+
+        when: "Añado un mensaje de prioridad alta"
+        colaMensajes.addMensaje(new Mensaje("rem", "dest", "Urgente!", Mensaje.PRIORIDAD_ALTA))
+
+        // Inicio del bloque then
+        then: "La cola tiene tres mensajes"
+        colaMensajes.totalMensajes() == 3
+        and: "El primer mensaje tiene prioridad alta"
+        colaMensajes.getMensajeEnPosicion(0).prioridad == Mensaje.PRIORIDAD_ALTA
+        and: "El segundo mensaje tiene prioridad normal"
+        colaMensajes.getMensajeEnPosicion(1).prioridad == Mensaje.PRIORIDAD_NORMAL
+        and: "El tercer mensaje tiene prioridad baja"
+        colaMensajes.getMensajeEnPosicion(2).prioridad == Mensaje.PRIORIDAD_BAJA
+        // Fin del bloque then
+    }
+
 }
