@@ -14,6 +14,9 @@ class Trabajos04IntegrationSpec extends IntegrationSpec {
         Trabajo.count == 0
 
         when:
+        Usuario usuario = Usuario.build()
+        Trabajo.build(nombre: "ok", tipo: "suma", operando1: 3, operando2: 2, usuario: usuario)
+        Trabajo.build(nombre: "error", usuario: usuario)
 
         then:
         Trabajo.count == 2

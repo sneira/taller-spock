@@ -23,9 +23,17 @@ class Trabajos01IntegrationSpec extends IntegrationSpec {
         Trabajo.count == 0
 
         when:
+        Usuario usuario = new Usuario(nombre: 'nombre')
+        usuario.save()
+        Trabajo trabajo = new Trabajo(nombre: 'prueba', tipo: 'suma', operando1: 1, usuario: usuario)
+        trabajo.save()
+        // if (trabajo.hasErrors()) -> manera de saber que el save no ha ido bien por errores de validación.
+        // Si hacemos trabajo.save(failOnError: true) da una excepción en caso de que no se pueda guardar por errores de validación.
 
         then:
         Trabajo.count == 1
+        // Truco comentado por JMiguel: manera de comprobar que la tabla tiene un registro más, sin tener que guardar cuántos había antes
+        // Trabajo.count == old(Trabajo.count) + 1
     }
 
     def "2. Guardado con build (plugin build-test-data)"() {
@@ -33,6 +41,7 @@ class Trabajos01IntegrationSpec extends IntegrationSpec {
         Trabajo.count == 0
 
         when:
+        Trabajo.build()
 
         then:
         Trabajo.count == 1
@@ -43,6 +52,13 @@ class Trabajos01IntegrationSpec extends IntegrationSpec {
         Trabajo.count == 0
 
         when:
+        Usuario usuario = Usuario.build()
+        Trabajo.build(usuario: usuario)
+        Trabajo.build(usuario: usuario)
+        // Otra opción más Groovy:
+        /*2.times {
+            Trabajo.build(usuario: usuario)
+        }*/
 
         then:
         Trabajo.count == 2
